@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RullsDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CityTbl">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State_ID_FK" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CountryTbl">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobTbl">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RullTbl">
+    <Key>
+      <PropertyRef Name="RullID" />
+    </Key>
+    <Property Name="RullID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateTbl">
+    <Key>
+      <PropertyRef Name="StateID" />
+    </Key>
+    <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Country_ID_FK" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserTbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Family" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="120" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="City_ID_FK" Type="int" Nullable="false" />
+    <Property Name="Job_ID_FK" Type="int" Nullable="false" />
+    <Property Name="Rull_ID_FK" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="120" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CityTbl_StateTbl">
+    <End Role="StateTbl" Type="Self.StateTbl" Multiplicity="1" />
+    <End Role="CityTbl" Type="Self.CityTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateTbl">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="CityTbl">
+        <PropertyRef Name="State_ID_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StateTbl_CountryTbl">
+    <End Role="CountryTbl" Type="Self.CountryTbl" Multiplicity="1" />
+    <End Role="StateTbl" Type="Self.StateTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryTbl">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="StateTbl">
+        <PropertyRef Name="Country_ID_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTbl_CityTbl">
+    <End Role="CityTbl" Type="Self.CityTbl" Multiplicity="1" />
+    <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityTbl">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="UserTbl">
+        <PropertyRef Name="City_ID_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTbl_JobTbl">
+    <End Role="JobTbl" Type="Self.JobTbl" Multiplicity="1" />
+    <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobTbl">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="UserTbl">
+        <PropertyRef Name="Job_ID_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTbl_RullTbl">
+    <End Role="RullTbl" Type="Self.RullTbl" Multiplicity="1" />
+    <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RullTbl">
+        <PropertyRef Name="RullID" />
+      </Principal>
+      <Dependent Role="UserTbl">
+        <PropertyRef Name="Rull_ID_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RullsDbModelStoreContainer">
+    <EntitySet Name="CityTbl" EntityType="Self.CityTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryTbl" EntityType="Self.CountryTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobTbl" EntityType="Self.JobTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RullTbl" EntityType="Self.RullTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateTbl" EntityType="Self.StateTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CityTbl_StateTbl" Association="Self.FK_CityTbl_StateTbl">
+      <End Role="StateTbl" EntitySet="StateTbl" />
+      <End Role="CityTbl" EntitySet="CityTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StateTbl_CountryTbl" Association="Self.FK_StateTbl_CountryTbl">
+      <End Role="CountryTbl" EntitySet="CountryTbl" />
+      <End Role="StateTbl" EntitySet="StateTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTbl_CityTbl" Association="Self.FK_UserTbl_CityTbl">
+      <End Role="CityTbl" EntitySet="CityTbl" />
+      <End Role="UserTbl" EntitySet="UserTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTbl_JobTbl" Association="Self.FK_UserTbl_JobTbl">
+      <End Role="JobTbl" EntitySet="JobTbl" />
+      <End Role="UserTbl" EntitySet="UserTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTbl_RullTbl" Association="Self.FK_UserTbl_RullTbl">
+      <End Role="RullTbl" EntitySet="RullTbl" />
+      <End Role="UserTbl" EntitySet="UserTbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

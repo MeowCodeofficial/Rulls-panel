@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a86a22b7b20745e8abe3c9ade9546450" Name="Diagram1">
+        <EntityTypeShape EntityType="RullsDbModel.CityTbl" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.CountryTbl" Width="1.5" PointX="0.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.JobTbl" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.RullTbl" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.StateTbl" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RullsDbModel.UserTbl" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="RullsDbModel.FK_CityTbl_StateTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="RullsDbModel.FK_UserTbl_CityTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="RullsDbModel.FK_StateTbl_CountryTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="RullsDbModel.FK_UserTbl_JobTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="RullsDbModel.FK_UserTbl_RullTbl" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
